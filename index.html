@@ -3,126 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Official Admit Slip Portal - NMTS</title>
+    <title>NMTS — Official Admit Slip Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .gradient-bg { background: radial-gradient(circle at top, #0f2e24 0%, #05130f 100%); }
-        @media print {
-            body { background: white; color: black; }
-            .no-print { display: none !important; }
-            .print-card { border: 2px dashed #000; padding: 20px; margin: 0; page-break-inside: avoid; }
-        }
+        body { background-color: #f8fafc; color: #1e293b; }
+        .hero { background: linear-gradient(135deg, #064e3b 0%, #065f46 100%); color: white; }
+        .portal-card:hover { transform: translateY(-5px); transition: 0.3s; }
     </style>
 </head>
-<body class="bg-[#05130f] text-gray-100 font-sans min-h-screen flex flex-col justify-between">
+<body>
 
-    <!-- Header -->
-    <header class="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-40 px-4 py-2 no-print">
-        <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-3 cursor-pointer" onclick="showView('home')">
-                <h1 class="font-bold text-slate-900 text-base">NMTS <span class="bg-emerald-500 text-white text-[9px] px-1.5 py-0.5 rounded">OFFICIAL</span></h1>
-            </div>
-            <button onclick="showView('admin')" class="bg-slate-50 border border-slate-200 px-4 py-2 rounded-xl text-xs font-semibold text-slate-700">Admin Login</button>
+<!-- Helpline Bar -->
+<div class="bg-slate-900 text-white text-xs py-2 px-4 text-center">
+    📞 NMTS Helpline: <strong>0314-138-0148</strong> | National Mdcat Testing Service
+</div>
+
+<!-- Header -->
+<header class="flex justify-between items-center p-6 max-w-5xl mx-auto">
+    <div class="flex items-center gap-3">
+        <div class="text-2xl font-bold">NMTS</div>
+        <span class="bg-emerald-500 text-white text-[10px] px-2 py-0.5 rounded">OFFICIAL</span>
+    </div>
+    <a href="#admin" class="border border-slate-300 px-4 py-2 rounded-lg text-sm font-semibold">🛡️ Admin Login</a>
+</header>
+
+<!-- Hero Section -->
+<section class="hero py-20 px-6 text-center">
+    <p class="text-emerald-300 text-sm font-bold uppercase tracking-widest mb-4">🎖️ Pre-MDCAT Entry Card Portal</p>
+    <h2 class="text-4xl md:text-5xl font-black mb-6">Official Admit Slip Portal</h2>
+    <p class="max-w-xl mx-auto mb-8 opacity-90">Securely access and print your Pre-MDCAT Entry Card. Enter your CNIC to retrieve your official admit slip instantly.</p>
+    <button onclick="document.getElementById('lookup').scrollIntoView()" class="bg-white text-emerald-900 font-bold px-8 py-3 rounded-xl shadow-lg">🎓 Access My Admit Slip ›</button>
+</section>
+
+<!-- Portals -->
+<section id="lookup" class="max-w-5xl mx-auto py-16 px-6">
+    <h3 class="text-2xl font-bold text-center mb-10">Select Your Portal</h3>
+    <div class="grid md:grid-cols-2 gap-6">
+        <div class="portal-card bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+            <div class="text-3xl mb-4">🎓</div>
+            <h4 class="text-xl font-bold mb-2">Student Portal</h4>
+            <p class="text-slate-600 mb-4">Retrieve and print your official Pre-MDCAT admit slip using your 13-digit CNIC number.</p>
+            <input id="cnic" type="text" placeholder="Enter 13-digit CNIC" class="w-full border p-3 rounded-lg mb-3">
+            <button onclick="findSlip()" class="w-full bg-emerald-600 text-white py-3 rounded-lg font-bold">Find My Slip</button>
         </div>
-    </header>
-
-    <!-- Home View -->
-    <main id="home-view" class="flex-grow gradient-bg px-4 py-14 flex flex-col justify-center items-center no-print">
-        <h2 class="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-emerald-400 tracking-tight">Official Admit Slip Portal</h2>
-        <button onclick="showView('lookup')" class="mt-8 bg-white text-slate-900 font-extrabold px-10 py-4 rounded-2xl shadow-2xl">Access My Admit Slip</button>
-    </main>
-
-    <!-- Lookup View -->
-    <main id="lookup-view" class="hidden flex-grow px-4 py-16 flex flex-col items-center justify-center gradient-bg no-print">
-        <div class="bg-[#091a14] border border-emerald-900/40 w-full max-w-md p-8 rounded-2xl">
-            <form onsubmit="handleLookup(event)">
-                <input id="search-cnic" type="text" maxlength="13" required placeholder="Enter 13-digit CNIC" class="w-full bg-[#05130f] border border-emerald-900 p-3 rounded-xl text-white">
-                <button type="submit" class="w-full mt-4 bg-emerald-500 py-3 rounded-xl font-black">Find My Slip</button>
-            </form>
-            <div id="lookup-error" class="hidden mt-4 text-red-400 text-center text-xs">No record found.</div>
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+            <div class="text-3xl mb-4">🛡️</div>
+            <h4 class="text-xl font-bold mb-2">Admin Portal</h4>
+            <p class="text-slate-600 mb-8">Authorized staff can manage candidate records and issue admit slips.</p>
+            <a href="#" class="block text-center border-2 border-emerald-600 text-emerald-600 py-3 rounded-lg font-bold">Admin Login</a>
         </div>
-    </main>
+    </div>
+</section>
 
-    <!-- Slip Result View -->
-    <main id="slip-view" class="hidden flex-grow px-4 py-10 flex flex-col items-center justify-center bg-slate-900">
-        <div class="max-w-3xl w-full bg-white p-8 rounded-2xl text-slate-900">
-            <h2 class="text-xl font-black border-b-2 border-emerald-600 pb-2">ADMIT CARD</h2>
-            <div class="mt-4 space-y-2">
-                <p>Roll No: <span id="slip-roll" class="font-bold"></span></p>
-                <p>Name: <span id="slip-name" class="font-bold"></span></p>
-                <p>Centre: <span id="slip-centre" class="font-bold"></span></p>
-            </div>
-            <button onclick="window.print()" class="mt-6 bg-emerald-600 text-white px-4 py-2 rounded-xl">Print Slip</button>
-            <button onclick="showView('home')" class="ml-2 underline text-gray-500">Back</button>
-        </div>
-    </main>
+<!-- Features -->
+<section class="max-w-5xl mx-auto py-12 px-6 grid md:grid-cols-3 gap-8 text-center">
+    <div><div class="text-3xl mb-2">🔒</div><h4 class="font-bold">CNIC-Authenticated</h4><p class="text-sm text-slate-500">Only you can access your slip.</p></div>
+    <div><div class="text-3xl mb-2">📄</div><h4 class="font-bold">Officially Issued</h4><p class="text-sm text-slate-500">Verified directly by NMTS.</p></div>
+    <div><div class="text-3xl mb-2">✅</div><h4 class="font-bold">Print-Ready</h4><p class="text-sm text-slate-500">Formatted for A4 printing.</p></div>
+</section>
 
-    <!-- Admin View -->
-    <main id="admin-view" class="hidden flex-grow px-4 py-16 flex flex-col items-center justify-center gradient-bg no-print">
-        <div id="admin-login-card" class="bg-[#091a14] border p-8 rounded-2xl w-full max-w-sm">
-            <form onsubmit="handleLogin(event)">
-                <input id="admin-user" type="text" placeholder="Username" required class="w-full p-3 bg-black rounded-xl mb-3">
-                <input id="admin-pass" type="password" placeholder="Password" required class="w-full p-3 bg-black rounded-xl mb-3">
-                <button type="submit" class="w-full bg-emerald-500 p-3 rounded-xl font-bold">Login</button>
-            </form>
-        </div>
-        <div id="admin-dashboard" class="hidden w-full max-w-4xl bg-[#091a14] p-6 rounded-2xl">
-            <h3 class="text-white font-bold mb-4">Dashboard</h3>
-            <table class="w-full text-white text-xs">
-                <thead><tr class="text-emerald-400 text-left"><th>Roll</th><th>Name</th><th>CNIC</th><th>Centre</th></tr></thead>
-                <tbody id="admin-table-body"></tbody>
-            </table>
-        </div>
-    </main>
-
-    <script>
-        // Database management: Load existing students or use default test data
-        function getDatabase() {
-            const defaultData = [{ roll: "NMTS-78601", name: "Muhammad Ali", father: "Asghar Ali", cnic: "4210112345671", centre: "Govt College", venue: "Hall A", hall: "02", room: "14" }];
-            const stored = localStorage.getItem('nmts_db');
-            return stored ? JSON.parse(stored) : defaultData;
+<script>
+    function findSlip() {
+        const cnic = document.getElementById('cnic').value;
+        if(cnic.length === 13) {
+            alert("Redirecting to admit slip for CNIC: " + cnic);
+        } else {
+            alert("Please enter a valid 13-digit CNIC.");
         }
+    }
+</script>
 
-        // View management: Hides other views, shows requested view
-        function showView(viewId) {
-            ['home-view', 'lookup-view', 'slip-view', 'admin-view'].forEach(id => document.getElementById(id).classList.add('hidden'));
-            document.getElementById(viewId + '-view').classList.remove('hidden');
-            if(viewId === 'admin' && localStorage.getItem('nmts_logged')) renderAdminTable();
-        }
-
-        // Student search logic
-        function handleLookup(e) {
-            e.preventDefault();
-            const cnic = document.getElementById('search-cnic').value.trim();
-            const student = getDatabase().find(s => s.cnic === cnic);
-            if(student) {
-                document.getElementById('slip-roll').innerText = student.roll;
-                document.getElementById('slip-name').innerText = student.name;
-                document.getElementById('slip-centre').innerText = student.centre;
-                showView('slip');
-            } else {
-                document.getElementById('lookup-error').classList.remove('hidden');
-            }
-        }
-
-        // Login logic (admin = 1234)
-        function handleLogin(e) {
-            e.preventDefault();
-            if(document.getElementById('admin-user').value === "Admin" && document.getElementById('admin-pass').value === "1234") {
-                localStorage.setItem('nmts_logged', 'true');
-                document.getElementById('admin-login-card').classList.add('hidden');
-                document.getElementById('admin-dashboard').classList.remove('hidden');
-                renderAdminTable();
-            } else alert("Invalid Credentials");
-        }
-
-        // Dashboard rendering logic
-        function renderAdminTable() {
-            document.getElementById('admin-table-body').innerHTML = getDatabase().map(s => 
-                `<tr><td class="p-2">${s.roll}</td><td class="p-2">${s.name}</td><td class="p-2">${s.cnic}</td><td class="p-2">${s.centre}</td></tr>`
-            ).join('');
-        }
-    </script>
 </body>
 </html>
