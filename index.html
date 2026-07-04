@@ -196,7 +196,7 @@
                     <label class="block text-xs font-bold text-gray-400 tracking-wider">Password</label>
                     <input id="admin-pass" type="password" required placeholder="Enter Secret Token" class="w-full bg-[#05130f] border border-emerald-900/60 focus:border-emerald-400 rounded-xl py-3 px-4 text-sm text-white focus:outline-none">
                 </div>
-                <div id="login-error" class="hidden text-xs text-red-400 text-center font-bold">Invalid username or password credentials.</div>
+                <div id="login-error" class="hidden text-xs text-red-400 text-center font-bold">Invalid credentials.</div>
                 <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-400 text-[#05130f] font-black py-3.5 rounded-xl shadow-lg text-sm tracking-wider cursor-pointer">
                     Secure Login
                 </button>
@@ -220,14 +220,10 @@
                     <input id="reg-name" type="text" placeholder="Full Candidate Name" required class="p-3 bg-[#091a14] border border-emerald-950 rounded-xl focus:border-emerald-500 outline-none text-white">
                     <input id="reg-father" type="text" placeholder="Father's Name" required class="p-3 bg-[#091a14] border border-emerald-950 rounded-xl focus:border-emerald-500 outline-none text-white">
                     <input id="reg-cnic" type="text" maxlength="13" placeholder="13-Digit CNIC (No dashes)" required class="p-3 bg-[#091a14] border border-emerald-950 rounded-xl focus:border-emerald-500 outline-none text-white font-mono">
-                    
-                    <!-- Decoupled Mapping: Centre vs Venue Fields -->
-                    <input id="reg-centre" type="text" placeholder="Exam Centre (e.g. Government College)" required class="p-3 bg-[#091a14] border border-emerald-950 rounded-xl focus:border-emerald-500 outline-none text-white">
-                    <input id="reg-venue" type="text" placeholder="Exam Venue (e.g. Sector-B Academic Block)" required class="p-3 bg-[#091a14] border border-emerald-950 rounded-xl focus:border-emerald-500 outline-none text-white">
-                    
-                    <!-- Shared Hall/Room Assignments Accepted Freely -->
-                    <input id="reg-hall" type="text" placeholder="Hall Number (Permits duplicates)" required class="p-3 bg-[#091a14] border border-emerald-950 rounded-xl focus:border-emerald-500 outline-none text-white">
-                    <input id="reg-room" type="text" placeholder="Room Number (Permits duplicates)" required class="p-3 bg-[#091a14] border border-emerald-950 rounded-xl focus:border-emerald-500 outline-none text-white">
+                    <input id="reg-centre" type="text" placeholder="Exam Centre" required class="p-3 bg-[#091a14] border border-emerald-950 rounded-xl focus:border-emerald-500 outline-none text-white">
+                    <input id="reg-venue" type="text" placeholder="Exam Venue" required class="p-3 bg-[#091a14] border border-emerald-950 rounded-xl focus:border-emerald-500 outline-none text-white">
+                    <input id="reg-hall" type="text" placeholder="Hall Number" required class="p-3 bg-[#091a14] border border-emerald-950 rounded-xl focus:border-emerald-500 outline-none text-white">
+                    <input id="reg-room" type="text" placeholder="Room Number" required class="p-3 bg-[#091a14] border border-emerald-950 rounded-xl focus:border-emerald-500 outline-none text-white">
                 </div>
                 <button type="submit" class="bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-2.5 rounded-xl font-bold text-xs cursor-pointer shadow-md">Save Student Record</button>
             </form>
@@ -242,8 +238,14 @@
                                 <th class="p-3">Roll No</th>
                                 <th class="p-3">Candidate</th>
                                 <th class="p-3">CNIC</th>
-                                <th class="p-3">Exam Centre</th>
-                                <th class="p-3">Exam Venue</th>
-                                <th class="p-3">Hall</th>
-                                <th class="p-3">Room</th>
-                 
+                                <th class="p-3">Centre</th>
+                                <th class="p-3">Venue</th>
+                                <th class="p-3">Hall / Room</th>
+                                <th class="p-3 text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-table-body" class="divide-y divide-emerald-950/40 text-gray-300">
+                            <!-- Injected dynamically -->
+                        </tbody>
+                    </table>
+                </d
