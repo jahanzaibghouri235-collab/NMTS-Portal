@@ -21,7 +21,6 @@
     <header class="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-40 px-4 py-2 no-print">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             <div class="flex items-center gap-3 cursor-pointer" onclick="showView('home')">
-                <img src="1000048810.jpg" alt="Logo" onerror="this.style.display='none'" class="h-14 w-auto object-contain">
                 <h1 class="font-bold text-slate-900 text-base">NMTS <span class="bg-emerald-500 text-white text-[9px] px-1.5 py-0.5 rounded">OFFICIAL</span></h1>
             </div>
             <button onclick="showView('admin')" class="bg-slate-50 border border-slate-200 px-4 py-2 rounded-xl text-xs font-semibold text-slate-700">Admin Login</button>
@@ -78,18 +77,21 @@
     </main>
 
     <script>
+        // Database management: Load existing students or use default test data
         function getDatabase() {
             const defaultData = [{ roll: "NMTS-78601", name: "Muhammad Ali", father: "Asghar Ali", cnic: "4210112345671", centre: "Govt College", venue: "Hall A", hall: "02", room: "14" }];
             const stored = localStorage.getItem('nmts_db');
             return stored ? JSON.parse(stored) : defaultData;
         }
 
+        // View management: Hides other views, shows requested view
         function showView(viewId) {
             ['home-view', 'lookup-view', 'slip-view', 'admin-view'].forEach(id => document.getElementById(id).classList.add('hidden'));
             document.getElementById(viewId + '-view').classList.remove('hidden');
             if(viewId === 'admin' && localStorage.getItem('nmts_logged')) renderAdminTable();
         }
 
+        // Student search logic
         function handleLookup(e) {
             e.preventDefault();
             const cnic = document.getElementById('search-cnic').value.trim();
@@ -104,6 +106,7 @@
             }
         }
 
+        // Login logic (admin = 1234)
         function handleLogin(e) {
             e.preventDefault();
             if(document.getElementById('admin-user').value === "Admin" && document.getElementById('admin-pass').value === "1234") {
@@ -114,6 +117,7 @@
             } else alert("Invalid Credentials");
         }
 
+        // Dashboard rendering logic
         function renderAdminTable() {
             document.getElementById('admin-table-body').innerHTML = getDatabase().map(s => 
                 `<tr><td class="p-2">${s.roll}</td><td class="p-2">${s.name}</td><td class="p-2">${s.cnic}</td><td class="p-2">${s.centre}</td></tr>`
